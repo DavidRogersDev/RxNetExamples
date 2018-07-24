@@ -1,26 +1,23 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
 using System.Reactive.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Observers
 {
     public partial class Form1 : Form
     {
-        private IObservable<string> eventsListObservable;
+        private readonly IObservable<string> _eventsListObservable;
+        private IDisposable _eventsListObservableSubscription;
 
         public Form1()
         {
             InitializeComponent();
 
-            eventsListObservable = typeof(TextBox)
+            // Grab all the possible events on a TextBox using reflection and create an Observable
+            // using the convenient ToObservable extension method.
+            _eventsListObservable = typeof(TextBox)
                 .GetEvents()
                 .Select(evt => evt.Name)
                 .ToObservable();
@@ -28,9 +25,20 @@ namespace Observers
 
         private void btnStartPump_Click(object sender, EventArgs e)
         {
-            ExampleWinformsObserver exampleWinformsObserver = new ExampleWinformsObserver(txtObserverLog);
+            txtObserverLog.Clear();
 
-            eventsListObservable.Subscribe(exampleWinformsObserver);
+            // This is our custom IObserver, created for demonstration purposes.
+            var exampleWinformsObserver = new ExampleWinformsObserver(txtObserverLog);
+
+            // Invoke the Subscribe method which is the only method prescrived by the IObservable interface.
+            _eventsListObservableSubscription = _eventsListObservable.Subscribe(exampleWinformsObserver);
+        }
+
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            _eventsListObservableSubscription.Dispose(); // cleanup
+
+            base.OnClosing(e);
         }
     }
 }
