@@ -32,28 +32,28 @@ namespace EventsToObservables
                     (char)(z - Convert.ToInt32(k) + a)
                 );
 
-            var afterHalfwayObservable = keyPressesObservable
-                .Where(k =>
-                    Convert.ToInt32(k) - a > 26 / 2
-                );
-
-
             mirrorCharSubscriber = mirrorCharObservable.Subscribe(text =>
             {
                 label1.Text += text;
             });
 
-            afterHalfwaySubscriber = afterHalfwayObservable.Subscribe(text =>
-            {
-                label2.Text += text;
-            });
+
+            //var afterHalfwayObservable = keyPressesObservable
+            //    .Where(k =>
+            //        Convert.ToInt32(k) - a > 26 / 2
+            //    );
+
+            //afterHalfwaySubscriber = afterHalfwayObservable.Subscribe(text =>
+            //{
+            //    label2.Text += text;
+            //});
 
             keyPressesObservable = null; // You can even set the original observable to null!
         }
 
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
-            afterHalfwaySubscriber.Dispose();
+            //afterHalfwaySubscriber.Dispose();
             mirrorCharSubscriber.Dispose();
 
             base.OnFormClosing(e);
