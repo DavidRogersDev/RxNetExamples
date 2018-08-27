@@ -14,7 +14,7 @@ namespace Observers
 
         public void OnNext(string value)
         {
-            _control.Text += string.Concat($"{value}{Environment.NewLine}");
+            _control.Text += $"{value}{Environment.NewLine}";
         }
 
         public void OnError(Exception error)
@@ -24,7 +24,7 @@ namespace Observers
 
         public void OnCompleted()
         {
-            _control.Text += string.Concat($"{Environment.NewLine}Done!");
+            _control.Text += $"{Environment.NewLine}Done!";
         }
     }
 }

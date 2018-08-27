@@ -34,9 +34,10 @@
             // 
             // btnStartPump
             // 
-            this.btnStartPump.Location = new System.Drawing.Point(69, 55);
+            this.btnStartPump.Location = new System.Drawing.Point(34, 29);
+            this.btnStartPump.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnStartPump.Name = "btnStartPump";
-            this.btnStartPump.Size = new System.Drawing.Size(213, 66);
+            this.btnStartPump.Size = new System.Drawing.Size(106, 34);
             this.btnStartPump.TabIndex = 0;
             this.btnStartPump.Text = "&Start the Pump";
             this.btnStartPump.UseVisualStyleBackColor = true;
@@ -44,22 +45,24 @@
             // 
             // txtObserverLog
             // 
-            this.txtObserverLog.Location = new System.Drawing.Point(69, 147);
+            this.txtObserverLog.Location = new System.Drawing.Point(34, 76);
+            this.txtObserverLog.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtObserverLog.Multiline = true;
             this.txtObserverLog.Name = "txtObserverLog";
             this.txtObserverLog.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtObserverLog.Size = new System.Drawing.Size(1024, 600);
+            this.txtObserverLog.Size = new System.Drawing.Size(514, 314);
             this.txtObserverLog.TabIndex = 1;
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1174, 779);
+            this.ClientSize = new System.Drawing.Size(587, 405);
             this.Controls.Add(this.txtObserverLog);
             this.Controls.Add(this.btnStartPump);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Observer Example Form";
             this.ResumeLayout(false);
             this.PerformLayout();
 
